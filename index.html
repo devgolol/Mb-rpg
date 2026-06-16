@@ -2,17 +2,33 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#0a0e1a" />
   <title>잊혀진 숲의 전설 — 턴제 RPG</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div id="game-wrap">
-    <h1 id="game-title-text">잊혀진 숲의 전설</h1>
-    <canvas id="game" width="640" height="480"></canvas>
-    <div id="help">
-      이동: 방향키 / WASD &nbsp;·&nbsp; 확인·공격: 스페이스 또는 Enter &nbsp;·&nbsp; 취소: Esc 또는 X &nbsp;·&nbsp; 메뉴: 방향키로 선택
+    <div id="screen">
+      <canvas id="game" width="640" height="480"></canvas>
     </div>
+
+    <!-- 모바일/터치 컨트롤 (데스크톱에서는 마우스로도 동작) -->
+    <div id="touch-controls">
+      <div id="dpad">
+        <button class="pad up"    data-act="up"    aria-label="위">▲</button>
+        <button class="pad left"  data-act="left"  aria-label="왼쪽">◀</button>
+        <button class="pad mid"   disabled></button>
+        <button class="pad right" data-act="right" aria-label="오른쪽">▶</button>
+        <button class="pad down"  data-act="down"  aria-label="아래">▼</button>
+      </div>
+      <div id="action-buttons">
+        <button class="act a" data-act="confirm" aria-label="확인">A</button>
+        <button class="act b" data-act="cancel"  aria-label="취소">B</button>
+      </div>
+    </div>
+
+    <p id="help">📱 아래 패드로 이동 · <b>A</b> 확인/공격 · <b>B</b> 취소 &nbsp;|&nbsp; 💻 방향키·스페이스·X</p>
   </div>
 
   <!-- 일반 script 순차 로드: file:// 더블클릭 실행 보장 (ES module 미사용) -->

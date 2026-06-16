@@ -27,6 +27,35 @@
     handleInput(action);
   });
 
+  // ── 터치/마우스 컨트롤 (D패드는 누르고 있으면 반복 이동) ──
+  function bindTouchControls() {
+    var DIRS = { up: 1, down: 1, left: 1, right: 1 };
+    var buttons = document.querySelectorAll("#touch-controls button[data-act]");
+    Array.prototype.forEach.call(buttons, function (btn) {
+      var act = btn.getAttribute("data-act");
+      var repeatTimer = null;
+
+      function press(e) {
+        if (e) e.preventDefault();
+        handleInput(act);
+        if (DIRS[act]) {
+          clearInterval(repeatTimer);
+          repeatTimer = setInterval(function () { handleInput(act); }, 160);
+        }
+      }
+      function release() { clearInterval(repeatTimer); repeatTimer = null; }
+
+      btn.addEventListener("touchstart", press, { passive: false });
+      btn.addEventListener("touchend", function (e) { e.preventDefault(); release(); }, { passive: false });
+      btn.addEventListener("touchcancel", release);
+      btn.addEventListener("mousedown", press);
+      btn.addEventListener("mouseup", release);
+      btn.addEventListener("mouseleave", release);
+      btn.addEventListener("contextmenu", function (e) { e.preventDefault(); });
+    });
+  }
+  bindTouchControls();
+
   // ── 입력 라우팅 ───────────────────────────────────────────
   function handleInput(action) {
     switch (gameState) {
@@ -168,18 +197,18 @@
 
     switch (gameState) {
       case STATE.TITLE:
-        UI.drawTitle(ctx, blink);
+        UI.drawTitle(ctx, blink, frame);
         break;
       case STATE.FIELD:
-        GameMap.draw(ctx, Player.get());
+        GameMap.draw(ctx, Player.get(), frame);
         UI.drawHUD(ctx, Player.get());
         break;
       case STATE.BATTLE:
         Battle.tick();
-        UI.drawBattle(ctx, Battle.getState(), Player.get());
+        UI.drawBattle(ctx, Battle.getState(), Player.get(), frame);
         break;
       case STATE.DIALOGUE:
-        GameMap.draw(ctx, Player.get());
+        GameMap.draw(ctx, Player.get(), frame);
         UI.drawHUD(ctx, Player.get());
         UI.drawDialogue(ctx, dialogue.lines[dialogue.index], dialogue.label);
         break;
@@ -187,7 +216,7 @@
         UI.drawGameOver(ctx, blink);
         break;
       case STATE.ENDING:
-        UI.drawEnding(ctx, Player.get(), blink);
+        UI.drawEnding(ctx, Player.get(), blink, frame);
         break;
     }
     requestAnimationFrame(loop);
