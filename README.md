@@ -5,8 +5,8 @@
 
 ## 바로 플레이하기
 
-- **온라인(GitHub Pages):** 저장소 Pages가 활성화되면 아래 주소에서 바로 플레이할 수 있습니다.
-  - `https://devgolol.github.io/mb-rpg/`
+- **온라인(GitHub Pages):** 아래 주소에서 바로 플레이할 수 있습니다. (URL 대소문자 주의: `Mb-rpg`)
+  - https://devgolol.github.io/Mb-rpg/
 - **로컬에서:** `index.html` 파일을 더블클릭하여 브라우저로 열기만 하면 됩니다.
 
 > 일부 브라우저에서 `file://` 보안 정책이 엄격할 경우, 폴더에서 아래 명령으로 간단한 로컬 서버를 띄워 접속하세요.
