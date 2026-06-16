@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>잊혀진 숲의 전설 — 턴제 RPG</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="game-wrap">
+    <h1 id="game-title-text">잊혀진 숲의 전설</h1>
+    <canvas id="game" width="640" height="480"></canvas>
+    <div id="help">
+      이동: 방향키 / WASD &nbsp;·&nbsp; 확인·공격: 스페이스 또는 Enter &nbsp;·&nbsp; 취소: Esc 또는 X &nbsp;·&nbsp; 메뉴: 방향키로 선택
+    </div>
+  </div>
+
+  <!-- 일반 script 순차 로드: file:// 더블클릭 실행 보장 (ES module 미사용) -->
+  <script src="js/data.js"></script>
+  <script src="js/player.js"></script>
+  <script src="js/map.js"></script>
+  <script src="js/battle.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
